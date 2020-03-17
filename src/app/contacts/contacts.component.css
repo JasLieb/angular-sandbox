@@ -1,4 +1,8 @@
-.contactRowList {
+.contact-header {
+  display: inline;
+}
+
+.contact-element-list {
   margin: 1%;
   display: inline-block;
 }
@@ -12,7 +16,7 @@
   background-size: cover;
 }
 
-.contact-card-actions,
-.contact-card-name {
+.contact-card-header {
+  vertical-align: middle;
   text-align: center;
 }

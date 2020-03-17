@@ -32,7 +32,11 @@ export class ContactsComponent implements OnInit {
     }
   }
 
-  sortContacts(contacts : Array<Contact>) {
+  toggleFavourite(contactIndex) {
+    this.contacts[contactIndex].isFavourite = !this.contacts[contactIndex].isFavourite;
+  }
+
+  sortContacts(contacts: Array<Contact>) {
     return contacts.sort(
       ( a: { name: string; }, b: { name: string; } ) =>
         a.name.localeCompare(b.name)

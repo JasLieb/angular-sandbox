@@ -11,23 +11,31 @@
   </mat-form-field>
   <button
     mat-button
-    (click)="addNewUser(newUserName.value)"
-    value="toto">
+    (click)="addNewUser(newUserName.value)">
     <mat-icon>add</mat-icon>
   </button>
 </div>
 
-<h2>Your contacts :</h2>
+<div class="contact-header">
+  <p>Your contacts :
+    <mat-slide-toggle #onlyFavourite change="let onlyFavourite=$event.checked">Only favourites </mat-slide-toggle>
+  </p>
+</div>
+
+<br/>
+
 <div
-  class="contactRowList"
-  *ngFor="let contact of contacts">
-  <mat-card class="contact-card">
-    <mat-card-header>
+  class="contact-element-list"
+  *ngFor="let contact of contacts; let i = index"
+  (click)="toggleFavourite(i)">
+  <mat-card
+    class="contact-card"
+    *ngIf="!onlyFavourite.checked || onlyFavourite.checked==contact.isFavourite">
+    <mat-card-header class="contact-card-header">
       <div mat-card-avatar class="default-contact-image"></div>
-      <mat-card-title class="contact-card-name">{{contact.name}}</mat-card-title>
+      <mat-card-title>{{contact.name}}</mat-card-title>
+      <mat-icon *ngIf="contact.isFavourite">favorite</mat-icon>
+      <mat-icon *ngIf="!contact.isFavourite">favorite_outline</mat-icon>
     </mat-card-header>
-    <mat-card-actions class="contact-card-actions">
-      <mat-checkbox>Favourite</mat-checkbox>
-    </mat-card-actions>
   </mat-card>
 </div>

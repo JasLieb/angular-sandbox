@@ -11,7 +11,7 @@ import {
   MatFormFieldModule,
   MatInputModule,
   MatButtonModule,
-  MatCheckboxModule,
+  MatSlideToggleModule,
   MatIconModule
 } from '@angular/material/';
 
@@ -28,7 +28,7 @@ import {
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
-    MatCheckboxModule,
+    MatSlideToggleModule,
     MatIconModule
   ],
   providers: [],
