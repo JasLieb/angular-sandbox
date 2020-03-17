@@ -17,6 +17,7 @@ export class ContactsComponent implements OnInit {
       new Contact('tutu', false),
       new Contact('tete', false)
     ];
+    this.sortContacts(this.contacts);
   }
 
   ngOnInit() {
@@ -27,6 +28,14 @@ export class ContactsComponent implements OnInit {
       this.contacts.push(
         new Contact(contactName, false)
       );
+      this.sortContacts(this.contacts);
     }
+  }
+
+  sortContacts(contacts : Array<Contact>) {
+    return contacts.sort(
+      ( a: { name: string; }, b: { name: string; } ) =>
+        a.name.localeCompare(b.name)
+    );
   }
 }

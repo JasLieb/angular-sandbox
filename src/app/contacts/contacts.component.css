@@ -1,0 +1,18 @@
+.contactRowList {
+  margin: 1%;
+  display: inline-block;
+}
+
+.contact-card {
+  max-width: 400px;
+}
+
+.default-contact-image {
+  background-image: url('https://st4.depositphotos.com/8440746/19755/v/450/depositphotos_197557950-stock-illustration-avatar-icon-vector-male-user.jpg');
+  background-size: cover;
+}
+
+.contact-card-actions,
+.contact-card-name {
+  text-align: center;
+}
