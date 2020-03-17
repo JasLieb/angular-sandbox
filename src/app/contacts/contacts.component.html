@@ -1,6 +1,17 @@
-<p>contacts works!</p>
-<ul>
+<div>
+  <h2>Add new contact :</h2>
+  <input
+    #newUserName
+    name="newUserNameInput"
+    type="text"
+    placeholder="Your contact's name :" />
+  <button (click)="addNewUser(newUserName.value)">Add new User</button>
+</div>
+<div>
+  <h2>Your contacts :</h2>
+  <ul>
     <li *ngFor="let contact of contacts">
-        {{contact.name}} {{contact.isFavourite}}
+      {{contact.name}} {{contact.isFavourite}}
     </li>
-</ul>
+  </ul>
+</div>

@@ -7,7 +7,7 @@ import { Contact } from '../models/contact';
   styleUrls: ['./contacts.component.css']
 })
 export class ContactsComponent implements OnInit {
-  contacts: any;
+  contacts: Array<Contact>;
 
   constructor() {
     this.contacts = [
@@ -22,4 +22,11 @@ export class ContactsComponent implements OnInit {
   ngOnInit() {
   }
 
+  addNewUser(contactName: string) {
+    if (contactName.length > 0) {
+      this.contacts.push(
+        new Contact(contactName, false)
+      );
+    }
+  }
 }
