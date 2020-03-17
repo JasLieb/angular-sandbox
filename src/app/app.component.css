@@ -1,6 +1,8 @@
 .mainContainer {
-  margin: 1% 25%;
-  padding: 1% 2%;
+  margin: 5% 10%;
+  align-content: center;
+  text-align: center;
+  width: 80%;
   border: #cececf solid 1px;
 }
 

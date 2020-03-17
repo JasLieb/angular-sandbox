@@ -2,13 +2,21 @@
   display: inline;
 }
 
-.contact-element-list {
+.contact-header-options {
   margin: 1%;
-  display: inline-block;
+  display: flex;
+  justify-content: center;
 }
 
-.contact-card {
-  max-width: 400px;
+.contact-content {
+  display: flex;
+  justify-content: center;
+}
+
+.contact-list {
+  display: inline-flex;
+  min-width: 20%;
+  margin: 1% 0.5%;
 }
 
 .default-contact-image {

@@ -1,6 +1,8 @@
-<h2>Add new contact :</h2>
-<div>
+<div class="contact-header">
+  <h2>Add new contact :</h2>
+</div>
 
+<div class="contact-content">
   <mat-form-field>
     <mat-label>Name</mat-label>
     <input
@@ -17,20 +19,19 @@
 </div>
 
 <div class="contact-header">
-  <p>Your contacts :
-    <mat-slide-toggle #onlyFavourite change="let onlyFavourite=$event.checked">Only favourites </mat-slide-toggle>
-  </p>
+  <h2>Your contacts</h2>
+  <div class="contact-header-options">
+    <mat-slide-toggle #onlyFavourite change="let onlyFavourite=$event.checked">Only favourites</mat-slide-toggle>
+  </div>
 </div>
 
 <br/>
 
 <div
-  class="contact-element-list"
+  class="contact-list"
   *ngFor="let contact of contacts; let i = index"
   (click)="toggleFavourite(i)">
-  <mat-card
-    class="contact-card"
-    *ngIf="!onlyFavourite.checked || onlyFavourite.checked==contact.isFavourite">
+  <mat-card *ngIf="!onlyFavourite.checked || onlyFavourite.checked==contact.isFavourite">
     <mat-card-header class="contact-card-header">
       <div mat-card-avatar class="default-contact-image"></div>
       <mat-card-title>{{contact.name}}</mat-card-title>
