@@ -1,0 +1,42 @@
+<div class="contact-header">
+  <h2>Add new contact :</h2>
+</div>
+
+<div class="contact-content">
+  <mat-form-field>
+    <mat-label>Name</mat-label>
+    <input
+    matInput
+    #newUserName
+    name="newUserNameInput"
+    type="text" />
+  </mat-form-field>
+  <button
+    mat-button
+    (click)="addNewUser(newUserName.value)">
+    <mat-icon>add</mat-icon>
+  </button>
+</div>
+
+<div class="contact-header">
+  <h2>Your contacts</h2>
+  <div class="contact-header-options">
+    <mat-slide-toggle #onlyFavourite change="let onlyFavourite=$event.checked">Only favourites</mat-slide-toggle>
+  </div>
+</div>
+
+<br/>
+
+<div
+  class="contact-list"
+  *ngFor="let contact of contacts; let i = index"
+  (click)="toggleFavourite(i)">
+  <mat-card *ngIf="!onlyFavourite.checked || onlyFavourite.checked==contact.isFavourite">
+    <mat-card-header class="contact-card-header">
+      <div mat-card-avatar class="default-contact-image"></div>
+      <mat-card-title>{{contact.name}}</mat-card-title>
+      <mat-icon *ngIf="contact.isFavourite">favorite</mat-icon>
+      <mat-icon *ngIf="!contact.isFavourite">favorite_outline</mat-icon>
+    </mat-card-header>
+  </mat-card>
+</div>

@@ -1,0 +1,30 @@
+.contact-header {
+  display: inline;
+}
+
+.contact-header-options {
+  margin: 1%;
+  display: flex;
+  justify-content: center;
+}
+
+.contact-content {
+  display: flex;
+  justify-content: center;
+}
+
+.contact-list {
+  display: inline-flex;
+  min-width: 20%;
+  margin: 1% 0.5%;
+}
+
+.default-contact-image {
+  background-image: url('https://st4.depositphotos.com/8440746/19755/v/450/depositphotos_197557950-stock-illustration-avatar-icon-vector-male-user.jpg');
+  background-size: cover;
+}
+
+.contact-card-header {
+  vertical-align: middle;
+  text-align: center;
+}
