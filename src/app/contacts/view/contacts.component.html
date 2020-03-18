@@ -21,7 +21,7 @@
 <div class="contact-header">
   <h2>Your contacts</h2>
   <div class="contact-header-options">
-    <mat-slide-toggle #onlyFavourite change="let onlyFavourite=$event.checked">Only favourites</mat-slide-toggle>
+    <mat-slide-toggle [checked]="onlyFavourites" (change)="onClickToggleShowFavourite($event.checked)">Only favourites</mat-slide-toggle>
   </div>
 </div>
 
@@ -31,7 +31,7 @@
   class="contact-list"
   *ngFor="let contact of contacts; let i = index"
   (click)="onClickToggleFavourite(i)">
-  <mat-card *ngIf="!onlyFavourite.checked || onlyFavourite.checked==contact.isFavourite">
+  <mat-card>
     <mat-card-header class="contact-card-header">
       <div mat-card-avatar class="default-contact-image"></div>
       <mat-card-title>{{contact.name}}</mat-card-title>
