@@ -1,24 +1,23 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component } from '@angular/core';
 import { Contact } from '../../models/contact';
 import { ContactService } from '../services/contact.service';
-import { Subscription, Observable } from 'rxjs';
+import { BaseComponent } from 'src/app/base.component';
 
 @Component({
   selector: 'app-contacts',
   templateUrl: './contacts.component.html',
-  styleUrls: ['./contacts.component.css']
+  styleUrls: ['./contacts.component.css'],
+  providers: [ContactService]
 })
-export class ContactsComponent implements OnInit, OnDestroy {
+export class ContactsComponent extends BaseComponent {
 
   onlyFavourites: boolean;
   contacts: Array<Contact>;
   service: ContactService;
-  contactSubcriptions: Array<Subscription>;
-
-  constructor() {
-    this.service = new ContactService();
+  constructor(public contactService: ContactService) {
+    super();
+    this.service = contactService;
     const contactBehavior = this.service.contactStateBehavior;
-    this.contactSubcriptions = new Array<Subscription>();
     this.contactSubcriptions.push(
       contactBehavior
       .subscribe(
@@ -28,12 +27,6 @@ export class ContactsComponent implements OnInit, OnDestroy {
         }
       )
     );
-  }
-
-  ngOnInit() {}
-
-  ngOnDestroy() {
-    this.contactSubcriptions.forEach(sub => sub.unsubscribe());
   }
 
   onClickAddNewContact(contactName: string) {

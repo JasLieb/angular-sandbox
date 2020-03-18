@@ -6,14 +6,12 @@ import { ContactsComponent } from './contacts/view/contacts.component';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import {
-  MatCardModule,
-  MatFormFieldModule,
-  MatInputModule,
-  MatButtonModule,
-  MatSlideToggleModule,
-  MatIconModule
-} from '@angular/material/';
+import {MatCardModule} from '@angular/material/card';
+import {MatInputModule} from '@angular/material/input';
+import {MatButtonModule} from '@angular/material/button';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import {MatIconModule} from '@angular/material/icon';
+
 import { NotFoundComponent } from './not-found/not-found.component';
 
 @NgModule({
@@ -27,7 +25,6 @@ import { NotFoundComponent } from './not-found/not-found.component';
     AppRoutingModule,
     BrowserAnimationsModule,
     MatCardModule,
-    MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
     MatSlideToggleModule,
