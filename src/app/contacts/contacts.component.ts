@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Contact } from '../models/contact';
+import produce from 'immer';
 
 @Component({
   selector: 'app-contacts',
@@ -7,7 +8,6 @@ import { Contact } from '../models/contact';
   styleUrls: ['./contacts.component.css']
 })
 export class ContactsComponent implements OnInit {
-  contacts: Array<Contact>;
 
   constructor() {
     this.contacts = [
@@ -19,27 +19,36 @@ export class ContactsComponent implements OnInit {
     ];
     this.sortContacts(this.contacts);
   }
+  contacts: Array<Contact>;
 
-  ngOnInit() {
-  }
+  updater = produce((contacts, contactName) => {
+    contacts.push(
+      new Contact(contactName, false)
+    );
+    this.sortContacts(contacts);
+  });
 
-  addNewUser(contactName: string) {
+  ngOnInit() {}
+
+  addNewContact(contactName: string) {
     if (contactName.length > 0) {
-      this.contacts.push(
-        new Contact(contactName, false)
-      );
-      this.sortContacts(this.contacts);
+      this.contacts = this.updater(this.contacts, contactName);
     }
   }
 
-  toggleFavourite(contactIndex) {
-    this.contacts[contactIndex].isFavourite = !this.contacts[contactIndex].isFavourite;
+  onClickToggleFavourite(contactIndex: number) {
+    this.contacts = this.toggleFavourite(this.contacts, contactIndex);
   }
 
-  sortContacts(contacts: Array<Contact>) {
-    return contacts.sort(
-      ( a: { name: string; }, b: { name: string; } ) =>
-        a.name.localeCompare(b.name)
+  toggleFavourite(contacts: Array<Contact>, contactIndex: number) {
+    return produce(contacts, draft => {
+      draft[contactIndex].isFavourite = ! draft[contactIndex].isFavourite;
+    });
+  }
+
+  sortContacts(contacts: Array<Contact>): void {
+    contacts.sort(
+      ( a: { name: string; }, b: { name: string; } ) => a.name.localeCompare(b.name)
     );
   }
 }

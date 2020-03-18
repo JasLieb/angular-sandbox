@@ -13,7 +13,7 @@
   </mat-form-field>
   <button
     mat-button
-    (click)="addNewUser(newUserName.value)">
+    (click)="addNewContact(newUserName.value)">
     <mat-icon>add</mat-icon>
   </button>
 </div>
@@ -30,7 +30,7 @@
 <div
   class="contact-list"
   *ngFor="let contact of contacts; let i = index"
-  (click)="toggleFavourite(i)">
+  (click)="onClickToggleFavourite(i)">
   <mat-card *ngIf="!onlyFavourite.checked || onlyFavourite.checked==contact.isFavourite">
     <mat-card-header class="contact-card-header">
       <div mat-card-avatar class="default-contact-image"></div>
