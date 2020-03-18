@@ -8,7 +8,6 @@ import produce from 'immer';
   styleUrls: ['./contacts.component.css']
 })
 export class ContactsComponent implements OnInit {
-  contacts: Array<Contact>;
 
   constructor() {
     this.contacts = [
@@ -20,41 +19,36 @@ export class ContactsComponent implements OnInit {
     ];
     this.contacts = this.sortContacts(this.contacts);
   }
+  contacts: Array<Contact>;
 
-  ngOnInit() {
-  }
+  updater = produce((contacts, contactName) => {
+    contacts.push(
+      new Contact(contactName, false)
+    );
+    this.sortContacts(contacts);
+  });
+
+  ngOnInit() {}
 
   addNewContact(contactName: string) {
     if (contactName.length > 0) {
-      this.contacts =
-        this.sortContacts(
-          produce(this.contacts, draft => {
-            draft.push(
-              new Contact(contactName, false)
-            );
-          })
-        );
+      this.contacts = this.updater(this.contacts, contactName);
     }
   }
 
-  // Appel suite à un évènement
   onClickToggleFavourite(contactIndex: number) {
     this.contacts = this.toggleFavourite(this.contacts, contactIndex);
   }
 
-  // Inner method
   toggleFavourite(contacts: Array<Contact>, contactIndex: number) {
     return produce(contacts, draft => {
       draft[contactIndex].isFavourite = ! draft[contactIndex].isFavourite;
     });
   }
 
-  // Inner method
-  sortContacts(contacts: Array<Contact>) {
-    return produce(contacts, draft => {
-      draft.sort(
-        ( a: { name: string; }, b: { name: string; } ) => a.name.localeCompare(b.name)
-      );
-    });
+  sortContacts(contacts: Array<Contact>): void {
+    contacts.sort(
+      ( a: { name: string; }, b: { name: string; } ) => a.name.localeCompare(b.name)
+    );
   }
 }
