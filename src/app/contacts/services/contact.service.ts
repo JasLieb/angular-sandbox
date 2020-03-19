@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/';
-import { Contact, ContactState, State } from '../../models/contact';
-import produce from 'immer';
+import { Contact, ContactState } from '../../models/contact';
+import produce, { Draft } from 'immer';
 
 @Injectable({
   providedIn: 'root'
@@ -24,48 +24,42 @@ export class ContactService {
     );
   }
 
-  private setState(updater: (state: ContactState) => ContactState) {
+  private updateState(producer: (state: Draft<ContactState>) => void) {
     this.contactStateBehavior
       .next(
-        updater( this.contactStateBehavior.getValue() )
+        produce(this.contactStateBehavior.value, producer)
       );
   }
 
   addNewContact(contactName: string) {
     if (contactName.length > 0) {
-      this.setState(
-        produce(
-          (state: ContactState) => {
-            state.contacts.push(
-              new Contact(contactName, false)
-            );
+      this.updateState(
+        (state: Draft<ContactState>) => {
+          state.contacts.push(
+            new Contact(contactName, false)
+          );
 
-            state.contacts = state.contacts.sort(
-              (a, b) => a.name.localeCompare(b.name)
-            );
-          }
-        )
+          state.contacts = state.contacts.sort(
+            (a, b) => a.name.localeCompare(b.name)
+          );
+        }
       );
     }
   }
 
   toggleFavourite(contactIndex: number) {
-    this.setState(
-      produce(
-        (state: ContactState) => {
-          state.contacts[contactIndex].isFavourite = ! state.contacts[contactIndex].isFavourite;
-        }
-      )
+    this.updateState(
+      (state: Draft<ContactState>) => {
+        state.contacts[contactIndex].isFavourite = ! state.contacts[contactIndex].isFavourite;
+      }
     );
   }
 
   showFavourites(onlyFavourite: boolean) {
-    this.setState(
-      produce(
-        (state: ContactState) => {
-          state.onlyFavourites = onlyFavourite;
-        }
-      )
+    this.updateState(
+      (state: Draft<ContactState>) => {
+        state.onlyFavourites = onlyFavourite;
+      }
     );
   }
 }
