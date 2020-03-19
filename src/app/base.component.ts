@@ -2,13 +2,13 @@ import { OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 
 export class BaseComponent implements OnDestroy {
-  contactSubcriptions: Array<Subscription>;
+  subcriptions: Array<Subscription>;
 
   constructor() {
-    this.contactSubcriptions = new Array<Subscription>();
+    this.subcriptions = new Array<Subscription>();
   }
 
   ngOnDestroy(): void {
-    this.contactSubcriptions.forEach(sub => sub.unsubscribe());
+    this.subcriptions.forEach(sub => sub.unsubscribe());
   }
 }

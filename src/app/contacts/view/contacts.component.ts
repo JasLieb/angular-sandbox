@@ -18,7 +18,7 @@ export class ContactsComponent extends BaseComponent {
     super();
     this.service = contactService;
     const contactBehavior = this.service.contactStateBehavior;
-    this.contactSubcriptions.push(
+    this.subcriptions.push(
       contactBehavior
       .subscribe(
         next => {
