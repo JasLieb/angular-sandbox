@@ -9,7 +9,7 @@ import { BehaviorSubject } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class ContactService implements IStateUpdater<ContactState>, IContactService<ContactState> {
+export class ContactService implements IStateUpdater<ContactState>, IContactService {
 
   behavior: BehaviorSubject<ContactState>;
 
