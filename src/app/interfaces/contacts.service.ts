@@ -1,4 +1,4 @@
-import { ContactState } from '../models/states/contactState';
+import { ContactState } from '../models/states/contact.state';
 import { BehaviorSubject } from 'rxjs';
 
 export interface IContactService<TState extends ContactState> {

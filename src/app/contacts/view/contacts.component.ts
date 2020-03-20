@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { Contact } from '../../models/contact';
+import { Contact } from '../../models/contact.model';
 import { BaseComponent } from 'src/app/base.component';
-import { IContactService } from 'src/app/interfaces/service';
-import { ContactState } from 'src/app/models/states/contactState';
+import { IContactService } from 'src/app/interfaces/contacts.service';
+import { ContactState } from 'src/app/models/states/contact.state';
 import { ContactService } from '../services/contact.service';
 
 @Component({
