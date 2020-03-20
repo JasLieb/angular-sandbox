@@ -1,23 +1,24 @@
 import { Component } from '@angular/core';
 import { Contact } from '../../models/contact';
-import { ContactService } from '../services/contact.service';
 import { BaseComponent } from 'src/app/base.component';
+import { IContactService } from 'src/app/interfaces/service';
+import { ContactState } from 'src/app/models/states/contactState';
+import { ContactService } from '../services/contact.service';
 
 @Component({
   selector: 'app-contacts',
   templateUrl: './contacts.component.html',
-  styleUrls: ['./contacts.component.css'],
-  providers: [ContactService]
+  styleUrls: ['./contacts.component.css']
 })
 export class ContactsComponent extends BaseComponent {
 
   onlyFavourites: boolean;
   contacts: Array<Contact>;
-  service: ContactService;
-  constructor(public contactService: ContactService) {
+  service: IContactService<ContactState>;
+  constructor() {
     super();
-    this.service = contactService;
-    const contactBehavior = this.service.contactStateBehavior;
+    this.service = new ContactService();
+    const contactBehavior = this.service.behavior;
     this.subcriptions.push(
       contactBehavior
       .subscribe(

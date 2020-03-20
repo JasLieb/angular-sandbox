@@ -1,16 +1,20 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs/';
-import { Contact, ContactState } from '../../models/contact';
+import { Contact} from '../../models/contact';
+import { ContactState } from '../../models/states/contactState';
 import produce, { Draft } from 'immer';
+import { IContactService } from 'src/app/interfaces/service';
+import { IStore } from 'src/app/interfaces/store';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ContactService {
-  contactStateBehavior: BehaviorSubject<ContactState>;
+export class ContactService implements IStore<ContactState>, IContactService<ContactState> {
+
+  behavior: BehaviorSubject<ContactState>;
 
   constructor() {
-    this.contactStateBehavior = new BehaviorSubject<ContactState>(
+    this.behavior = new BehaviorSubject<ContactState>(
       new ContactState(
         [
           new Contact('tata', false),
@@ -24,10 +28,10 @@ export class ContactService {
     );
   }
 
-  private updateState(producer: (state: Draft<ContactState>) => void) {
-    this.contactStateBehavior
+  updateState(producer: (state: Draft<ContactState>) => void) {
+    this.behavior
       .next(
-        produce(this.contactStateBehavior.value, producer)
+        produce(this.behavior.value, producer)
       );
   }
 
