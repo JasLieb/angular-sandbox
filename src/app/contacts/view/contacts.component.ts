@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
 import { Contact } from '../../models/contact.model';
 import { BaseComponent } from 'src/app/base.component';
-import { IContactService } from 'src/app/interfaces/contacts.service';
-import { ContactState } from 'src/app/models/states/contact.state';
+import { ContactServiceCommands } from 'src/app/interfaces/contacts.service';
 import { ContactService } from '../services/contact.service';
 
 @Component({
@@ -14,7 +13,7 @@ export class ContactsComponent extends BaseComponent {
 
   onlyFavourites: boolean;
   contacts: Array<Contact>;
-  service: IContactService<ContactState>;
+  service: ContactServiceCommands;
   constructor() {
     super();
     this.service = new ContactService();

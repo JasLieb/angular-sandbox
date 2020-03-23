@@ -2,14 +2,14 @@ import { Injectable } from '@angular/core';
 import { Contact} from '../../models/contact.model';
 import { ContactState } from '../../models/states/contact.state';
 import produce, { Draft } from 'immer';
-import { IContactService } from 'src/app/interfaces/contacts.service';
-import { IStateUpdater } from 'src/app/interfaces/state.updater';
+import { ContactServiceCommands } from 'src/app/interfaces/contacts.service';
+import { StateUpdater } from 'src/app/interfaces/state.updater';
 import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ContactService implements IStateUpdater<ContactState>, IContactService {
+export class ContactService implements StateUpdater<ContactState>, ContactServiceCommands {
 
   behavior: BehaviorSubject<ContactState>;
 

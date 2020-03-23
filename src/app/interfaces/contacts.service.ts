@@ -1,7 +1,7 @@
 import { ContactState } from '../models/states/contact.state';
 import { BehaviorSubject } from 'rxjs';
 
-export interface IContactService {
+export interface ContactServiceCommands {
 
   behavior: BehaviorSubject<ContactState>;
 
