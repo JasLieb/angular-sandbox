@@ -1,10 +1,4 @@
-export class Contact {
-    constructor(
-      readonly name: string,
-      readonly isFavourite: boolean
-    ) {
-    }
-}
+import { Contact } from '../contact.model';
 
 export class ContactState {
   constructor(
