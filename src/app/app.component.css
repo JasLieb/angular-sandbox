@@ -1,3 +1,19 @@
+.app-nav-bar {
+  display: block;
+  background-color: blueviolet;
+  padding: 1%;
+}
+
+.div-nav-bar {
+  display: inline-block;
+  vertical-align: middle;
+  align-content: center;
+}
+
+.button-nav-bar {
+  text-align: center;
+}
+
 .mainContainer {
   margin: 5% 10%;
   align-content: center;
